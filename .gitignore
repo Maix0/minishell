@@ -4,3 +4,4 @@ flake.lock
 *.d
 build
 .direnv
+minishell
