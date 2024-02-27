@@ -1,0 +1,6 @@
+.envrc
+flake.lock
+*.o
+*.d
+build
+.direnv

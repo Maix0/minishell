@@ -1,0 +1,3 @@
+[submodule "stdme"]
+	path = stdme
+	url = https://github.com/maix0/stdme.git

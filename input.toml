@@ -1,0 +1,41 @@
+[definition.vec]
+headers = ["stdme/generic_sources/header/vec_C__PREFIX__.h__TEMPLATE__"]
+sources = [
+	"stdme/generic_sources/src/vec_C__PREFIX__.c__TEMPLATE__",
+	"stdme/generic_sources/src/vec_C__PREFIX___functions2.c__TEMPLATE__",
+	"stdme/generic_sources/src/vec_C__PREFIX___functions3.c__TEMPLATE__",
+]
+replace.C__TYPENAME__ = "type"
+replace.C__TYPEHEADER__ = "header_include"
+replace.C__PREFIX__ = "prefix"
+replace.C__PREFIXUP__ = "prefix"
+
+
+[definition.hashmap]
+headers = ["stdme/generic_sources/header/hashmap_C__PREFIX__.h__TEMPLATE__"]
+sources = [
+	"stdme/generic_sources/src/hashmap_C__PREFIX__.c__TEMPLATE__",
+	"stdme/generic_sources/src/hashmap_C__PREFIX___utils.c__TEMPLATE__",
+]
+replace.C__VALTYPE__ = "type"
+replace.C__KEYTYPE__ = "type"
+replace.C__TYPEHEADER__ = "header_include"
+replace.C__PREFIX__ = "prefix"
+replace.C__PREFIXUP__ = "prefix"
+
+
+[[create.vec]]
+sources_output = "src/vec/"
+headers_output = "include/me/vec/"
+replace.C__TYPENAME__ = "t_u8"
+replace.C__TYPEHEADER__ = ''
+replace.C__PREFIX__ = "u8"
+replace.C__PREFIXUP__ = "U8"
+
+[[create.vec]]
+sources_output = "src/vec/"
+headers_output = "include/me/vec/"
+replace.C__TYPENAME__ = "t_buffer_str"
+replace.C__TYPEHEADER__ = '#include "me/buffered_str/buf_str.h"'
+replace.C__PREFIX__ = "buf_str"
+replace.C__PREFIXUP__ = "BUF_STR"
