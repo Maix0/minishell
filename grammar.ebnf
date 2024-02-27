@@ -1,0 +1,76 @@
+/* converted on Tue Feb 27, 2024, 18:32 (UTC+01) by w3c-to-w3c v0.67 which is Copyright (c) 2011-2024 by Gunther Rademacher <grd@gmx.net> */
+
+ALPHA    ::= [a-zA-Z]
+DIGIT    ::= [0-9]
+NUMBER   ::= DIGIT+
+WORD     ::= (ALPHA | '_') ( ALPHA | '_' | NUMBER )*
+WORD-LIST
+         ::= WORD+
+ASSIGNMENT-WORD
+         ::= WORD '=' WORD
+/*
+REDIRECTION
+         ::= ( '>' | '<' | '>>' | '<<' | '<<-' | '&>' | '<>' | '>|' ) WORD
+           | NUMBER ( ( '>' | '<' | '>>' | '<<' | '<<-' | '<>' | '>|' ) WORD | ( '<&' | '>&' ) ( NUMBER | WORD | '-' ) )
+           | ( '<&' | '>&' ) ( NUMBER | WORD | '-' )
+*/
+
+REDIRECTION ::= NUMBER? ((( '>' | '<' | '>>' | '<<' | '<<-' | '&>' | '<>' | '>|' ) WORD) | (( '<&' | '>&' ) ( NUMBER | WORD | '-' )))
+
+SIMPLE-COMMAND-ELEMENT
+         ::= WORD
+           | ASSIGNMENT-WORD
+           | REDIRECTION
+COMMAND  ::= SIMPLE-COMMAND-ELEMENT+
+           | SHELL-COMMAND REDIRECTION*
+SHELL-COMMAND
+         ::= FOR-COMMAND
+           | CASE-COMMAND
+           | ( 'while' | 'until' ) COMPOUND-LIST 'do' COMPOUND-LIST done
+           | SELECT-COMMAND
+           | IF-COMMAND
+           | SUBSHELL
+           | GROUP-COMMAND
+           | FUNCTION-DEF
+FOR-COMMAND
+         ::= 'for' WORD ( NEWLINE-LIST 'in' WORD-LIST LIST-TERMINATOR | ';' )? NEWLINE-LIST ( 'do' COMPOUND-LIST done | '{' COMPOUND-LIST '}' )
+SELECT-COMMAND
+         ::= 'select' WORD ( NEWLINE-LIST 'in' WORD-LIST LIST-TERMINATOR | ';' )? NEWLINE-LIST ( 'do' LIST done | '{' LIST '}' )
+CASE-COMMAND
+         ::= 'case' WORD NEWLINE-LIST 'in' ( CASE-CLAUSE-SEQUENCE? NEWLINE-LIST | CASE-CLAUSE ) 'esac'
+FUNCTION-DEF
+         ::= ( WORD '(' ')' | 'function' WORD ( '(' ')' )? ) NEWLINE-LIST GROUP-COMMAND
+SUBSHELL ::= '(' COMPOUND-LIST ')'
+IF-COMMAND
+         ::= 'if' COMPOUND-LIST 'then' COMPOUND-LIST ( 'elif' COMPOUND-LIST 'then' COMPOUND-LIST )* ( 'else' COMPOUND-LIST )? 'fi'
+GROUP-COMMAND
+         ::= '{' LIST '}'
+CASE-CLAUSE
+         ::= CASE-CLAUSE-SEQUENCE? PATTERN-LIST
+PATTERN-LIST
+         ::= NEWLINE-LIST '('? WORD ( '|' WORD )* ')' ( COMPOUND-LIST | NEWLINE-LIST )
+CASE-CLAUSE-SEQUENCE
+         ::= ( PATTERN-LIST ';;' )+
+LIST     ::= NEWLINE-LIST LIST0
+COMPOUND-LIST
+         ::= LIST
+           | NEWLINE-LIST LIST1
+LIST0    ::= LIST1 ( '\n' | '&' | ';' ) NEWLINE-LIST
+LIST1    ::= LIST1 ( '&&' | '||' | '&' | ';' | '\n' ) NEWLINE-LIST LIST1
+           | PIPELINE-COMMAND
+LIST-TERMINATOR
+         ::= '\n'
+           | ';'
+NEWLINE-LIST
+         ::= '\n'*
+SIMPLE-LIST
+         ::= SIMPLE-LIST1 ( '&' | ';' )?
+SIMPLE-LIST1
+         ::= SIMPLE-LIST1 ( ( '&&' | '||' ) NEWLINE-LIST | '&' | ';' ) SIMPLE-LIST1
+           | PIPELINE-COMMAND
+PIPELINE-COMMAND
+         ::= ( '!' TIMESPEC? | TIMESPEC '!'? )? PIPELINE
+PIPELINE ::= PIPELINE '|' NEWLINE-LIST PIPELINE
+           | COMMAND
+TIMESPEC ::= 'time'
+           | 'time' '-p'
