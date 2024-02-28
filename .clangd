@@ -1,0 +1,21 @@
+CompileFlags: # Tweak the parse settings
+  Add: 
+    - "-I/home/maiboyer/Documents/ring-2/minishell/include/"
+    - "-I/home/maiboyer/Documents/ring-2/minishell/output/include/"
+    - "-I/home/maiboyer/Documents/ring-2/minishell/generic_sources/header/"
+    - "-I/home/maix/school/ring-2/minishell/include/"
+    - "-I/home/maix/school/ring-2/minishell/output/include/"
+    - "-I/home/maix/school/ring-2/minishell/generic_sources/header/"
+    - "-I/home/maiboyer/Documents/ring-2/minishell/lexer/include/"
+    - "-I/home/maiboyer/Documents/ring-2/minishell/lexer/output/include/"
+    - "-I/home/maiboyer/Documents/ring-2/minishell/lexer/generic_sources/header/"
+    - "-I/home/maix/school/ring-2/minishell/lexer/include/"
+    - "-I/home/maix/school/ring-2/minishell/lexer/output/include/"
+    - "-I/home/maix/school/ring-2/minishell/lexer/generic_sources/header/"
+    - "-I/home/maiboyer/Documents/ring-2/minishell/stdme/include/"
+    - "-I/home/maiboyer/Documents/ring-2/minishell/stdme/output/include/"
+    - "-I/home/maiboyer/Documents/ring-2/minishell/stdme/generic_sources/header/"
+    - "-I/home/maix/school/ring-2/minishell/stdme/include/"
+    - "-I/home/maix/school/ring-2/minishell/stdme/output/include/"
+    - "-I/home/maix/school/ring-2/minishell/stdme/generic_sources/header/"
+

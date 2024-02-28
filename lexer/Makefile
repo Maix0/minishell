@@ -6,13 +6,13 @@
 #    By: maiboyer <maiboyer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/03 13:20:01 by maiboyer          #+#    #+#              #
-#    Updated: 2024/02/27 18:13:10 by maiboyer         ###   ########.fr        #
+#    Updated: 2024/02/28 17:10:07 by maiboyer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 define_module = $(addprefix $(1)/, $(2))
 
-BUILD_DIR		=	build
+BUILD_DIR		=	../build
 SRC_DIR			=	src
 INCLUDE_DIR		=	include output/include
 LIBS_DIR		=	..
